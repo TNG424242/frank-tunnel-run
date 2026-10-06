@@ -4,11 +4,15 @@ Side-scrolling platformer starring Frank (beige shirt + shorts, cowboy hat,
 Mario-style). Frank auto-runs through tunnels. TAP to jump (hold = higher).
 
 - Board: ESP32 CYD 2432S028R (ILI9341 320x240 + XPT2046 touch)
-- Framework: Arduino + LovyanGFX (huge_app partition)
+- Framework: Arduino + LovyanGFX (OTA partition layout so the game can
+  switch back to the SD launcher on-device)
 - Controls: TAP anywhere to jump, HOLD for higher jumps (single-touch safe)
 - Hazards: fire pits/strips, rolling boulders, tribesmen spears
 - Stomp tribesmen (+100), grab coins (+10), reach EXIT (+500)
 - 3 lives, 2.5s spawn protection, run speed rises every phase
+- Exit to launcher: HOLD top-left corner 3s → `EXIT TO LAUNCHER?` → TAP to
+  confirm (flashes `/launcher.bin` from SD and reboots; 6s wait cancels).
+  Serial `exit` + Enter does the same. Hint shown on the title screen.
 
 ## Levels (ASCII maps in src/main.cpp, `LV1`... — ragged rows OK)
 - `#` solid brick/ground, `=` platform, `C` coin, `F` fire
